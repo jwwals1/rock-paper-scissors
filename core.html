@@ -15,13 +15,13 @@
             // console.log(options[result]);
         }
 
-        // Get users option for rock, paper, scissors
-        function playerSelection(){
-            const result = (prompt("Please type your pick: "))
-            if (result == ['rock' || 'paper' || 'scissors'])
-            console.log(`you picked ${result}`)
-            else return 'Try again! You must pick either rock, paper, or scissors'
-        }
+            // Get users option for rock, paper, scissors
+            function playerSelection(){
+                const result = (prompt("Please type your pick: ").toLowerCase())
+                if (result == ['rock' || 'paper' || 'scissors'])
+                console.log(`you picked ${result}`)
+                else return 'Try again! You must pick either rock, paper, or scissors'
+            }    
     </script>
 </body>
 </html>
