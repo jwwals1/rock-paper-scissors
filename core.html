@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Return computers result for rock, paper, scissors
+        function getComputerChoice() {
+            const options = ['rock', 'paper', 'scissors'];
+            return options[Math.floor(Math.random() * options.length)];
+            // const result = Math.floor(Math.random() * options.length);
+            // console.log(options[result]);
+        }
+
+        // Get users option for rock, paper, scissors
+        function playerSelection(){
+            const result = (prompt("Please type your pick: "))
+            if (result == ['rock' || 'paper' || 'scissors'])
+            console.log(`you picked ${result}`)
+            else return 'Try again! You must pick either rock, paper, or scissors'
+        }
+    </script>
+</body>
+</html>
