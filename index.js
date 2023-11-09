@@ -1,5 +1,3 @@
-console.log('test')
-
 const options = ["rock", "paper", "scissors"]
 
 function getComputerChoice() {
@@ -55,10 +53,12 @@ function getPlayerChoice() {
 function game() {
     let scorePlayer = 0;
     let scoreComputer = 0;
+    // Play to game to five rounds 
     for (let i = 0; i < 5; i++) {
         const playerSelection = getPlayerChoice();
         const computerSelection = getComputerChoice();
         console.log(playRound(playerSelection, computerSelection));
+        // Seperate rounds on the console
         console.log("---------------")
         if (checkWinner(playerSelection, computerSelection) == "Player") {
             scorePlayer++;
@@ -68,6 +68,7 @@ function game() {
         }
     }
     console.log("Game over")
+    // Check winner
     if (scorePlayer > scoreComputer) {
         console.log("You won!")
     }
