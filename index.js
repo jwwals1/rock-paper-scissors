@@ -58,7 +58,6 @@ function playRound(playerSelection) {
             disableButtons()
         }
     }
-    console.log(result)
     document.getElementById('result').innerHTML = result
     return
 }
@@ -81,7 +80,6 @@ function getPlayerChoice() {
 buttons.forEach(button => {
     button.addEventListener('click', function () {
         playRound(button.id)
-        console.log(button.id)
     })
 })
 
