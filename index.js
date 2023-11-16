@@ -1,8 +1,17 @@
+let scorePlayer = 0;
+let scoreComputer = 0;
 const options = ["rock", "paper", "scissors"]
+const buttons = document.querySelectorAll('button')
 
 function getComputerChoice() {
     const choice = options[Math.floor(Math.random() * options.length)];
     return choice;
+}
+
+function disableButtons() {
+    buttons.forEach(elem => {
+        elem.disabled = true
+    })
 }
 
 function checkWinner(playerSelection, computerSelection) {
@@ -22,17 +31,36 @@ function checkWinner(playerSelection, computerSelection) {
 
 }
 
-function playRound(playerSelection, computerSelection) {
-    const result = checkWinner(playerSelection, computerSelection);
-    if (result == "Tie") {
-        return "It's a tie"
+function playRound(playerSelection) {
+    const computerSelection = getComputerChoice();
+    const winner = checkWinner(playerSelection, computerSelection);
+    let result = ""
+    if (winner == "Tie") {
+        result = `It's a tie, computer also picked ${computerSelection}. 
+        Your score: ${scorePlayer} Computer Score ${scoreComputer}`
+
     }
-    else if (result == "Player") {
-        return `You Win! ${playerSelection} beats ${computerSelection}`
+    else if (winner == "Player") {
+        scorePlayer++
+        result = `You Win! ${playerSelection} beats ${computerSelection}. 
+        Your score: ${scorePlayer} Computer Score ${scoreComputer}`
+        if (scorePlayer == 5) {
+            result += '<br><br>You Win! You were the first to 5 points! <br>Reload the page to play again!'
+            disableButtons()
+        }
     }
     else {
-        return `You Lose! ${computerSelection} beats ${playerSelection}`
+        scoreComputer++
+        result = `You Lose! ${computerSelection} beats ${playerSelection}. 
+        Your score: ${scorePlayer} Computer Score ${scoreComputer}`
+        if (scoreComputer == 5) {
+            result += '<br><br>You Lose! Computer was the first to 5 points! <br> Reload the page to play again!'
+            disableButtons()
+        }
     }
+    console.log(result)
+    document.getElementById('result').innerHTML = result
+    return
 }
 
 function getPlayerChoice() {
@@ -50,34 +78,10 @@ function getPlayerChoice() {
     }
 }
 
-function game() {
-    let scorePlayer = 0;
-    let scoreComputer = 0;
-    // Play to game to five rounds 
-    for (let i = 0; i < 5; i++) {
-        const playerSelection = getPlayerChoice();
-        const computerSelection = getComputerChoice();
-        console.log(playRound(playerSelection, computerSelection));
-        // Seperate rounds on the console
-        console.log("---------------")
-        if (checkWinner(playerSelection, computerSelection) == "Player") {
-            scorePlayer++;
-        }
-        else if (checkWinner(playerSelection, computerSelection) == "Computer") {
-            scoreComputer++;
-        }
-    }
-    console.log("Game over")
-    // Check winner
-    if (scorePlayer > scoreComputer) {
-        console.log("You won!")
-    }
-    else if (scorePlayer < scoreComputer) {
-        console.log("Computer won!")
-    }
-    else {
-        console.log("It's a tie")
-    }
-}
+buttons.forEach(button => {
+    button.addEventListener('click', function () {
+        playRound(button.id)
+        console.log(button.id)
+    })
+})
 
-game()
